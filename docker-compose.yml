@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  app:
+    image: portainer/portainer-ce:latest
+    privileged: true
+    restart: always
+    expose:
+      - 8000
+      - 9443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/volumes/portainer:/data
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    external: true
